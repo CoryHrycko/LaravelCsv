@@ -7,8 +7,9 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">CSV Import</div>
 
-                    <div class="panel-body">
+                    <div class="panel-body links">
                         Data imported successfully.
+                        <a href="/">Back</a>
                     </div>
                 </div>
             </div>

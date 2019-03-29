@@ -11,7 +11,10 @@ use Illuminate\Support\Facades\DB;
 
 class ImportController extends Controller
 {
-
+    public function index()
+    {
+        return view('welcome');
+    }
     public function getImport()
     {
         return view('import');
@@ -79,9 +82,16 @@ class ImportController extends Controller
 
     public function showIndividual(Request $request)
     {
-        $employee = Employee::find($request);
+        $employee = Contact::find($request);
 
         dd($employee);
         return view('welcome', compact('employee'));
+    }
+
+    public function destroy()
+    {
+        DB::delete('delete * from contacts');
+
+        return view('destroy');
     }
 }

@@ -11,8 +11,10 @@
 |
 */
 
-Route::get('/', 'ImportController@getImport')->name('import');
+Route::get('/','ImportController@index');
+Route::get('/import', 'ImportController@getImport')->name('import');
 Route::post('/import_parse', 'ImportController@parseImport')->name('import_parse');
 Route::post('/import_process', 'ImportController@processImport')->name('import_process');
 Route::get('/display', 'ImportController@show');
-Route::get('/employees/{id}', 'ImportController@showIndividual');
+Route::get('/display/{key}', 'ImportController@showIndividual');
+Route::delete('/display/delete', 'ImportController@destroy');
