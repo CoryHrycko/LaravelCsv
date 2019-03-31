@@ -4,7 +4,7 @@
         <div class="flex-center position-ref full-height">
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel Csv Magic Parser
+                    {{ config('app.long.name', 'Laravel Csv Magic Parser') }}
                 </div>
                 <div class="container links">
                     <a href="/import">New Import</a>

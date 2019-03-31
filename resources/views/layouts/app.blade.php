@@ -24,7 +24,7 @@
             background-color: darkgrey;
             outline: 1px solid slategrey;
         }
-        
+
         html, body {
             background-color: #fff;
             color: #636b6f;

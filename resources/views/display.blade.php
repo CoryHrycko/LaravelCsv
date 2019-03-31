@@ -1,9 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
+<br><br><br><br><br><br><br><br><br>
+    <div class="flex-center position-ref full-height">
+        <div class="content">
+<div class="title m-b-md">
+    {{ config('app.long.name', 'Laravel Csv Magic Parser') }}
+</div>
+<br>
 
-<br><br><br><br>
-<div class="container">
 <table class="container">
     <thead>
     <hr>
@@ -35,5 +40,6 @@ foreach ( $row as $key => $employee) {
 </tr>
 </tbody>
 </table>
+</div>
 </div>
 @endsection
