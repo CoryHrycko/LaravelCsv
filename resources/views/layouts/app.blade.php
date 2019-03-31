@@ -95,6 +95,10 @@
                     <a class="navbar-brand" href="{{ url('/') }}">
                         {{ config('app.name', 'LCMP') }}
                     </a>
+                    {{--Nav Links --}}
+                    <ul class="nav navbar-nav">
+                    <li><a onclick="goBack()">Back</a></li>
+                    </ul>
                 </div>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
@@ -109,7 +113,11 @@
 
         @yield('content')
     </div>
-
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
 </body>
