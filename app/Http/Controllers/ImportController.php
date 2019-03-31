@@ -6,7 +6,6 @@ use App\Contact;
 use App\CsvData;
 use App\Http\Requests\CsvImportRequest;
 use Illuminate\Http\Request;
-use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\DB;
 
 class ImportController extends Controller
@@ -22,14 +21,10 @@ class ImportController extends Controller
 
     public function parseImport(CsvImportRequest $request)
     {
-
         $path = $request->file('csv_file')->getRealPath();
 
-        if ($request->has('header')) {
-            $data = Excel::load($path, function($reader) {})->get()->toArray();
-        } else {
-            $data = array_map('str_getcsv', file($path));
-        }
+        $data = array_map('str_getcsv', file($path));
+
         $csv_header_fields = [];
         if (count($data) > 0) {
             if ($request->has('header')) {
@@ -39,7 +34,6 @@ class ImportController extends Controller
                 }
             }
             $csv_data = array_slice($data, 0, 5);
-
             $csv_data_file = CsvData::create([
                 'csv_filename' => $request->file('csv_file')->getClientOriginalName(),
                 'csv_header' => $request->has('header'),
@@ -80,18 +74,20 @@ class ImportController extends Controller
         return view('display', compact('employees'));
     }
 
-    public function showIndividual(Request $request)
+    public function showIndividual(Request $request, $id)
     {
-        $employee = Contact::find($request);
+//        dd($id);
+        $idint = (int)$id;
+//        dd($idint);
+        $employee = DB::select("select EmployeeId,first_name,last_name,title,ManagerId from contacts where EmployeeId = '$idint'");
 
-        dd($employee);
-        return view('welcome', compact('employee'));
+//        dd($employee);
+        return view('single', compact('employee'));
     }
 
-    public function destroy()
+    public function destroy($id)
     {
-        DB::delete('delete * from contacts');
-
+        DB::delete("DELETE * FROM contacts WHERE id = ?",[$id]);
         return view('destroy');
     }
 }
